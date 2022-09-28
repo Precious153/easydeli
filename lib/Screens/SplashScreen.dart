@@ -3,11 +3,29 @@ import 'package:flutter/material.dart';
 
 import '../constants/myColor.dart';
 import '../constants/size_config.dart';
+import 'onboardingScreen.dart';
 
-class SplashScreen extends StatelessWidget {
+
+// Precious worked on this page
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    // ignore: todo
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => OnboardingScreen()));
+    });
+  }
+
   Widget build(BuildContext context) {
     SizeConfig.init(context);
     return Scaffold(
@@ -18,18 +36,25 @@ class SplashScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset('assets/images/truck.png'),
-              SizedBox(height: getProportionateScreenHeight(11),),
+              SizedBox(
+                height: getProportionateScreenHeight(11),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  myText(data: 'Easy',
-                  color: Palette.kColorGold,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 40,),
-                  myText(data: 'Deli',
+                  myText(
+                    data: 'Easy',
+                    color: Palette.kColorGold,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 40,
+                  ),
+                  myText(
+                    data: 'Deli',
                     color: Palette.kColorWhite,
                     fontWeight: FontWeight.w700,
-                    fontSize: 40,)],
+                    fontSize: 40,
+                  )
+                ],
               )
             ],
           ),

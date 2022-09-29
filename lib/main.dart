@@ -1,6 +1,9 @@
+import 'package:easydeli/Screens/login.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SplashScreen.dart';
+import 'Screens/forgot_password.dart';
+import 'Screens/signUp.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +24,9 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
+        'Login': (context) => Login(),
+        'SignUp': (context) => SignUp(),
+        'ForgotPassword': (context) => ForgotPassword(),
       },
     );
   }

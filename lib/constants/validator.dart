@@ -20,21 +20,33 @@ class Validator {
   }
   String? validateFullName(String? formEmail) {
     if (formEmail == null || formEmail.isEmpty) {
-      return 'Full Name is required.';
+      return 'First Name is required.';
     }
 
     return null;
   }
-  String? phoneNumberValidator(String value) {
-    if (value == null || value.isEmpty) {
-      return 'Phone Number Required';
+
+  String? validateLastName(String? formEmail) {
+    if (formEmail == null || formEmail.isEmpty) {
+      return 'Last Name is required.';
     }
 
-    String pattern = '^(?:[+0]9)?[0-9]{10}\$';
-    RegExp regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return 'Enter Valid Phone Number';
-    }
-      return null;
+    return null;
   }
+
+  String? validatePhoneNumber(String? formEmail) {
+    if (formEmail == null || formEmail.isEmpty) {
+      return 'Phone Number is required.';
+    }
+
+    return null;
+  }
+  String? validateCode(String? formEmail) {
+    if (formEmail == null || formEmail.isEmpty) {
+      return 'Verification Code is required.';
+    }
+
+    return null;
+  }
+
 }

@@ -1,10 +1,13 @@
+import 'package:easydeli/Screens/homePage.dart';
 import 'package:easydeli/Screens/login.dart';
+import 'package:easydeli/Screens/onboardingScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SplashScreen.dart';
 import 'Screens/forgot_password.dart';
 import 'Screens/signUp.dart';
 
+// Bayo and Femi Worked on this
 void main() {
   runApp(const MyApp());
 }
@@ -24,9 +27,11 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
       routes: {
         "/": (context) => const SplashScreen(),
-        'Login': (context) => Login(),
+        'OnboardingScreen': (context) => OnboardingScreen(),
+        'Login': (context) => const Login(),
         'SignUp': (context) => SignUp(),
-        'ForgotPassword': (context) => ForgotPassword(),
+        'ForgotPassword': (context) => const ForgotPassword(),
+        'HomePage': (context) => HomePage(),
       },
     );
   }

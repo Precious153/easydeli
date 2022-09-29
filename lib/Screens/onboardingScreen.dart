@@ -94,8 +94,7 @@ class OnboardingScreen2 extends StatelessWidget {
               const SizedBox(height: 90),
               myButton(
                   onTap: (() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const Login()));
+                    Navigator.pushNamed(context, 'Login');
                   }),
                   height: 54,
                   width: getProportionateScreenWidth(336),
@@ -105,13 +104,11 @@ class OnboardingScreen2 extends StatelessWidget {
               const SizedBox(height: 24),
               myButton(
                   onTap: (() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
+                    Navigator.pushNamed(context, 'SignUp');
                   }),
                   height: 54,
                   width: getProportionateScreenWidth(336),
                   borderRadius: 8,
-                  color: Colors.blue,
                   child: myText(data: 'Sign up', color: Palette.kTextColor)),
             ]),
           ),

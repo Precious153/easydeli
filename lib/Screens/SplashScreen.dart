@@ -5,7 +5,6 @@ import '../constants/myColor.dart';
 import '../constants/size_config.dart';
 import 'onboardingScreen.dart';
 
-
 // Precious worked on this page
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,8 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => OnboardingScreen()));
+      Navigator.pushReplacementNamed(context, 'OnboardingScreen');
     });
   }
 

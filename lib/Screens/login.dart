@@ -26,85 +26,115 @@ class _LoginState extends State<Login> {
       backgroundColor: Palette.kBackgroundColorWhite,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0,right: 20),
+          padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: getProportionateScreenHeight(73),),
+                SizedBox(
+                  height: getProportionateScreenHeight(73),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    myText(data: 'Login',
-                    textAlign: TextAlign.center,
-                    color: Palette.kTextColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,),
+                    myText(
+                      data: 'Login',
+                      textAlign: TextAlign.center,
+                      color: Palette.kTextColor,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ],
                 ),
-                SizedBox(height: getProportionateScreenHeight(77),),
-                myText(data: 'Phone Number',
+                SizedBox(
+                  height: getProportionateScreenHeight(77),
+                ),
+                myText(
+                  data: 'Phone Number',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "PhoneNumber",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "PhoneNumber",
                     textEditingController: phoneController,
                     keyboardType: TextInputType.phone,
                     obscureText: false,
                     validator: Validator().validatePhoneNumber,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Password',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Password',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "password",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                  hint: "password",
                   textEditingController: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: toggle,
-                  passwordIcon:   GestureDetector(
-                      onTap: (){
-                        if(toggle==true){
+                  passwordIcon: GestureDetector(
+                      onTap: () {
+                        if (toggle == true) {
                           setState(() {
-                            toggle=false;
+                            toggle = false;
                           });
-                        } else{
+                        } else {
                           setState(() {
-                            toggle =true;
+                            toggle = true;
                           });
                         }
                       },
-                      child: toggle== true ?
-                      Icon(Icons.visibility_off_outlined,
-                      color: Palette.kBackgroundColor,) :
-                      Icon(Icons.visibility,
-                          color: Palette.kBackgroundColor) ),
+                      child: toggle == true
+                          ? Icon(
+                              Icons.visibility_off_outlined,
+                              color: Palette.kBackgroundColor,
+                            )
+                          : Icon(Icons.visibility,
+                              color: Palette.kBackgroundColor)),
                   validator: Validator().validatePassword,
-                  width: double.infinity, isPasswordType: true,
+                  width: double.infinity,
+                  isPasswordType: true,
                 ),
-                SizedBox(height: getProportionateScreenHeight(8),),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.pushNamed(context, 'ForgotPassword');
                       },
-                      child: myText(data: 'forgot password?',
-                      textAlign: TextAlign.center,
-                      color: Palette.kTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,),
+                      child: myText(
+                        data: 'forgot password?',
+                        textAlign: TextAlign.center,
+                        color: Palette.kTextColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                ],),
-                SizedBox(height: getProportionateScreenHeight(135),),
+                  ],
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(135),
+                ),
                 myButton(
-                  onTap: (){
-                  },
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, 'HomePage');
+                    },
                     height: 54,
                     width: double.infinity,
                     borderRadius: 8,

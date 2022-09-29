@@ -103,24 +103,13 @@ class _LoginState extends State<Login> {
                 ],),
                 SizedBox(height: getProportionateScreenHeight(135),),
                 myButton(
+                  onTap: (){
+                  },
                     height: 54,
                     width: double.infinity,
                     borderRadius: 8,
                     color: Palette.kBackgroundColor,
                     child: myText(data: 'Login', color: Palette.kColorWhite)),
-                SizedBox(height: getProportionateScreenHeight(15),),
-                Center(
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'SignUp');
-                    },
-                    child: myText(data: 'Create Account',
-                      textAlign: TextAlign.center,
-                      color: Palette.kTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,),
-                  ),
-                ),
               ],
             ),
           ),

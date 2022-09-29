@@ -180,20 +180,6 @@ class _SignUpState extends State<SignUp> {
                     borderRadius: 8,
                     color: Palette.kBackgroundColor,
                     child: myText(data: 'SignUp', color: Palette.kColorWhite)),
-                SizedBox(height: getProportionateScreenHeight(15),),
-                Center(
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'Login');
-                    },
-                    child: myText(data: 'Login',
-                      textAlign: TextAlign.center,
-                      color: Palette.kTextColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,),
-                  ),
-                ),
-                SizedBox(height: getProportionateScreenHeight(15),),
               ],
             ),
           ),

@@ -1,181 +1,134 @@
-import 'package:easydeli/constants/myButton.dart';
-import 'package:easydeli/constants/myColor.dart';
-import 'package:easydeli/constants/myImage.dart';
-import 'package:easydeli/constants/myText.dart';
-import 'package:easydeli/constants/myTextFormField.dart';
-import 'package:easydeli/constants/size_config.dart';
-import 'package:easydeli/constants/validator.dart';
+import 'dart:io';
+
+import 'package:easydeli/Screens/profile.dart';
+import 'package:easydeli/Screens/settings.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+
+
+import 'deliver_package.dart';
+import 'home.dart';
+
+
+
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-int _selectedIndex = 0;
-
-TextEditingController codeEditingController = TextEditingController();
-
 class _HomePageState extends State<HomePage> {
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+
+
+  int curretTab =0;
+  final List<Widget> screens = [
+    Home(),
+    DeliverPackage(),
+    Settings(),
+    Profile(),
+  ];
+
+  final PageStorageBucket bucket =  PageStorageBucket();
+  Widget currentScreen = Home();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(21, 47, 21, 0),
-          child: SingleChildScrollView(
-            child: Center(
-              child: _pages.elementAt(_selectedIndex),
+    return SafeArea(
+      child: Scaffold(
+        body: PageStorage(
+          child: currentScreen,
+          bucket: bucket,
+        ),
+        bottomNavigationBar: BottomAppBar(
+          shape: CircularNotchedRectangle(),
+          child: Container(
+            height: 60,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    MaterialButton(
+                      onPressed: (){
+                        setState(() {
+                          currentScreen = Home();
+                          curretTab=0;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment:MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.home_filled,
+                            color:curretTab==0 ?
+                            Colors.black:Colors.grey,),
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: (){
+                        setState(() {
+                          currentScreen = DeliverPackage();
+                          curretTab=1;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment:MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.directions_car_filled,
+                            color:curretTab==1 ?
+                            Colors.black:Colors.grey,),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    MaterialButton(
+                      onPressed: (){
+                        setState(() {
+                          currentScreen = Settings();
+                          curretTab=2;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment:MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.settings,
+                            color:curretTab==2 ?
+                            Colors.black:Colors.grey,),
+                        ],
+                      ),
+                    ),
+                    MaterialButton(
+                      onPressed: (){
+                        setState(() {
+                          currentScreen =Profile();
+                          curretTab=3;
+                        });
+                      },
+                      child: Column(
+                        mainAxisAlignment:MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.account_circle_outlined,
+                            color:curretTab==3 ?
+                            Colors.black:Colors.grey,),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: const Color(0xff292D32),
-          unselectedItemColor: const Color(0xff292D32),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/home.png')),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/truck-fast.png')),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/setting-2.png')),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage('assets/images/profile-circle.png')),
-                label: ''),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped),
     );
   }
 }
 
-const List<Widget> _pages = <Widget>[
-  Home(),
-  Icon(
-    Icons.call,
-    size: 150,
-  ),
-  Icon(
-    Icons.camera,
-    size: 150,
-  ),
-  Icon(
-    Icons.chat,
-    size: 150,
-  ),
-];
-
-class Home extends StatelessWidget {
-  const Home({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      Row(
-        children: [
-          myText(
-            data: 'Hello, ',
-            color: Palette.kTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
-          myText(
-            data: 'User FirstNmae',
-            color: Palette.kTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
-        ],
-      ),
-      const SizedBox(height: 6),
-      KTextFormField(
-          hint: 'Enter tracking code',
-          textEditingController: codeEditingController,
-          keyboardType: TextInputType.name,
-          obscureText: false,
-          validator: Validator().validateFullName,
-          width: getProportionateScreenWidth(336),
-          isPasswordType: false),
-      const SizedBox(height: 16),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          myButton2(
-              height: 134,
-              width: getProportionateScreenWidth(156),
-              color: Palette.kColorWhite,
-              borderRadius: 5,
-              child: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  myImage('assets/images/box-tick.png'),
-                  const SizedBox(height: 20),
-                  const myText(data: 'Deliver Package')
-                ],
-              )),
-          const Spacer(),
-          myButton2(
-              height: 134,
-              width: getProportionateScreenWidth(156),
-              color: Palette.kColorWhite,
-              borderRadius: 5,
-              child: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  myImage('assets/images/empty-wallet.png'),
-                  const SizedBox(height: 20),
-                  const myText(data: 'Fund Wallet')
-                ],
-              )),
-        ],
-      ),
-      const SizedBox(height: 32),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          myButton2(
-              height: 134,
-              width: getProportionateScreenWidth(156),
-              color: Palette.kColorWhite,
-              borderRadius: 5,
-              child: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  myImage('assets/images/align-left.png'),
-                  const SizedBox(height: 20),
-                  const myText(data: 'Track History')
-                ],
-              )),
-          const Spacer(),
-          myButton2(
-              height: 134,
-              width: getProportionateScreenWidth(156),
-              color: Palette.kColorWhite,
-              borderRadius: 5,
-              child: Column(
-                children: [
-                  const SizedBox(height: 5),
-                  myImage('assets/images/bag-2.png'),
-                  const SizedBox(height: 20),
-                  const myText(data: 'Track an Item')
-                ],
-              )),
-        ],
-      ),
-    ]);
-  }
-}

@@ -1,10 +1,15 @@
 import 'package:easydeli/Screens/homePage.dart';
 import 'package:easydeli/Screens/login.dart';
 import 'package:easydeli/Screens/onboardingScreen.dart';
+import 'package:easydeli/Screens/profile.dart';
+import 'package:easydeli/Screens/settings.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SplashScreen.dart';
+import 'Screens/deliver_package.dart';
 import 'Screens/forgot_password.dart';
+import 'Screens/fund_account.dart';
+import 'Screens/payment.dart';
 import 'Screens/signUp.dart';
 
 // Bayo and Femi Worked on this
@@ -32,6 +37,9 @@ class MyApp extends StatelessWidget {
         'SignUp': (context) => SignUp(),
         'ForgotPassword': (context) => const ForgotPassword(),
         'HomePage': (context) => HomePage(),
+        'DeliverPackage': (context) => DeliverPackage(),
+        'FundWallet': (context) => FundWallet(),
+        'Payment': (context) => Payment(),
       },
     );
   }

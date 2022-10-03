@@ -29,21 +29,18 @@ class _DeliverPackageState extends State<DeliverPackage> {
       backgroundColor: Palette.kBackgroundColorWhite,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 20.0,right: 20),
+          padding: const EdgeInsets.fromLTRB(20, 30, 20, 0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: getProportionateScreenHeight(52),
-                ),
                 Row(
                   children: [
-                    IconButton(onPressed: (){
-                      Navigator.popAndPushNamed(context, 'HomePage');
-                    },
-                        icon: Icon(Icons.arrow_back_ios)
-                    ),
+                    IconButton(
+                        onPressed: () {
+                          Navigator.popAndPushNamed(context, 'HomePage');
+                        },
+                        icon: Icon(Icons.arrow_back_ios)),
                     SizedBox(
                       width: getProportionateScreenWidth(65),
                     ),
@@ -56,34 +53,51 @@ class _DeliverPackageState extends State<DeliverPackage> {
                     ),
                   ],
                 ),
-
-                SizedBox(height: getProportionateScreenHeight(27),),
-                myText(data: 'Item Name',
+                SizedBox(
+                  height: getProportionateScreenHeight(27),
+                ),
+                myText(
+                  data: 'Item Name',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "Item Name",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "Item Name",
                     textEditingController: itemNameController,
                     keyboardType: TextInputType.name,
                     obscureText: false,
                     validator: Validator().validateFullName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Item Description',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Item Description',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "item Description",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "item Description",
                     textEditingController: itemDescriptionController,
                     keyboardType: TextInputType.name,
                     obscureText: false,
                     validator: Validator().validateLastName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -122,56 +136,81 @@ class _DeliverPackageState extends State<DeliverPackage> {
                           children: [
                             const SizedBox(height: 0),
                             myImage('assets/images/humbleicons_bike.png'),
-                             SizedBox(height: getProportionateScreenHeight(0)),
-                            const myText(data: 'Bike', color: Colors.white,)
+                            SizedBox(height: getProportionateScreenHeight(0)),
+                            const myText(
+                              data: 'Bike',
+                              color: Colors.white,
+                            )
                           ],
                         )),
                   ],
                 ),
-                SizedBox(height: getProportionateScreenHeight(40),),
-
-                myText(data: 'PickUp Address',
+                SizedBox(
+                  height: getProportionateScreenHeight(40),
+                ),
+                myText(
+                  data: 'PickUp Address',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "PickUp Address",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "PickUp Address",
                     textEditingController: pickUpController,
                     keyboardType: TextInputType.streetAddress,
                     obscureText: false,
                     validator: Validator().validateFullName,
-                    width: double.infinity, isPasswordType: false),
-
-                SizedBox(height: getProportionateScreenHeight(16),),
-
-                myText(data: 'Delivery Address',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Delivery Address',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "Delivery Address",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "Delivery Address",
                     textEditingController: deliveryController,
                     keyboardType: TextInputType.streetAddress,
                     obscureText: false,
                     validator: Validator().validateLastName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Reciepent Contact',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Reciepent Contact',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "Reciepent Contact",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "Reciepent Contact",
                     textEditingController: reciepentController,
                     keyboardType: TextInputType.number,
                     obscureText: false,
                     validator: Validator().validateLastName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(35),),
-
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(35),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -183,7 +222,8 @@ class _DeliverPackageState extends State<DeliverPackage> {
                         width: getProportionateScreenWidth(83),
                         borderRadius: 5,
                         color: Palette.kBackgroundColor,
-                        child: myText(data: 'Next', color: Palette.kColorWhite)),
+                        child:
+                            myText(data: 'Next', color: Palette.kColorWhite)),
                   ],
                 ),
               ],

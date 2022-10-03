@@ -49,7 +49,7 @@ class OnboardingScreen1 extends StatelessWidget {
                   color: Palette.kTextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.w400),
-              const SizedBox(height: 116),
+              const SizedBox(height: 100),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

@@ -1,8 +1,9 @@
 import 'package:easydeli/Screens/homePage.dart';
 import 'package:easydeli/Screens/login.dart';
 import 'package:easydeli/Screens/onboardingScreen.dart';
-import 'package:easydeli/Screens/profile.dart';
-import 'package:easydeli/Screens/settings.dart';
+import 'package:easydeli/Screens/trackHistory.dart';
+import 'package:easydeli/Screens/trackItem.dart';
+import 'package:easydeli/Screens/trackItemMap.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SplashScreen.dart';
@@ -36,10 +37,13 @@ class MyApp extends StatelessWidget {
         'Login': (context) => const Login(),
         'SignUp': (context) => SignUp(),
         'ForgotPassword': (context) => const ForgotPassword(),
-        'HomePage': (context) => HomePage(),
-        'DeliverPackage': (context) => DeliverPackage(),
-        'FundWallet': (context) => FundWallet(),
-        'Payment': (context) => Payment(),
+        'HomePage': (context) => const HomePage(),
+        'DeliverPackage': (context) => const DeliverPackage(),
+        'FundWallet': (context) => const FundWallet(),
+        'Payment': (context) => const Payment(),
+        'TrackHistory': (context) => const TrackHistory(),
+        'TrackItem': (context) => const TrackItem(),
+        'TrackItemMap': (context) => const TrackItemMap(),
       },
     );
   }

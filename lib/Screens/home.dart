@@ -96,6 +96,9 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   myButton2(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'TrackHistory');
+                      },
                       height: 134,
                       width: getProportionateScreenWidth(156),
                       color: Palette.kColorWhite,
@@ -110,6 +113,9 @@ class Home extends StatelessWidget {
                       )),
                   const Spacer(),
                   myButton2(
+                      onTap: () {
+                        Navigator.pushNamed(context, 'TrackItem');
+                      },
                       height: 134,
                       width: getProportionateScreenWidth(156),
                       color: Palette.kColorWhite,

@@ -30,67 +30,101 @@ class _SignUpState extends State<SignUp> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20.0,right: 20,bottom: 20),
+            padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: getProportionateScreenHeight(42),),
+                SizedBox(
+                  height: getProportionateScreenHeight(42),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    myText(data: 'SignUp',
+                    myText(
+                      data: 'SignUp',
                       textAlign: TextAlign.center,
                       color: Palette.kTextColor,
                       fontSize: 24,
-                      fontWeight: FontWeight.w500,),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ],
                 ),
-                SizedBox(height: getProportionateScreenHeight(31),),
-                myText(data: 'first Name',
+                SizedBox(
+                  height: getProportionateScreenHeight(31),
+                ),
+                myText(
+                  data: 'first Name',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "First Name",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "First Name",
                     textEditingController: firstNameController,
                     keyboardType: TextInputType.name,
                     obscureText: false,
                     validator: Validator().validateFullName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Last Name',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Last Name',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "Last Name",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "Last Name",
                     textEditingController: lastNameController,
                     keyboardType: TextInputType.name,
                     obscureText: false,
                     validator: Validator().validateLastName,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'email Address',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'email Address',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "Email Address",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "Email Address",
                     textEditingController: emailController,
                     keyboardType: TextInputType.emailAddress,
                     obscureText: false,
                     validator: Validator().validateEmail,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Country',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Country',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
                 Container(
                   height: 45,
                   child: TextField(
@@ -98,24 +132,20 @@ class _SignUpState extends State<SignUp> {
                     keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       hintText: selectedCountry,
-                      hintStyle: TextStyle(
-                          color: Colors.black
-                      ),
+                      hintStyle: TextStyle(color: Colors.black),
                       suffixIcon: IconButton(
-                        icon: Icon(
-                            Icons.arrow_drop_down
-                        ),
+                        icon: Icon(Icons.arrow_drop_down),
                         onPressed: () {
                           showCountryPicker(
                               context: context,
-                              onSelect: (selected){
+                              onSelect: (selected) {
                                 setState(() {
-                                  selectedCountry=selected.name;
+                                  selectedCountry = selected.name;
                                 });
                               });
                         },
                       ),
-                      border:  OutlineInputBorder(
+                      border: OutlineInputBorder(
                         borderSide: BorderSide.none,
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -124,56 +154,77 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                 ),
-
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Phone Number',
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Phone Number',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "PhoneNumber",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                    hint: "PhoneNumber",
                     textEditingController: phoneController,
                     keyboardType: TextInputType.phone,
                     obscureText: false,
                     validator: Validator().validatePhoneNumber,
-                    width: double.infinity, isPasswordType: false),
-                SizedBox(height: getProportionateScreenHeight(16),),
-                myText(data: 'Password',
+                    width: double.infinity,
+                    isPasswordType: false),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
+                myText(
+                  data: 'Password',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(8),),
-                KTextFormField(hint: "password",
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(8),
+                ),
+                KTextFormField(
+                  hint: "password",
                   textEditingController: passwordController,
                   keyboardType: TextInputType.visiblePassword,
                   obscureText: toggle,
-                  passwordIcon:   GestureDetector(
-                      onTap: (){
-                        if(toggle==true){
+                  passwordIcon: GestureDetector(
+                      onTap: () {
+                        if (toggle == true) {
                           setState(() {
-                            toggle=false;
+                            toggle = false;
                           });
-                        } else{
+                        } else {
                           setState(() {
-                            toggle =true;
+                            toggle = true;
                           });
                         }
                       },
-                      child: toggle== true ?
-                      Icon(Icons.visibility_off_outlined,
-                        color: Palette.kBackgroundColor,) :
-                      Icon(Icons.visibility,
-                          color: Palette.kBackgroundColor) ),
+                      child: toggle == true
+                          ? Icon(
+                              Icons.visibility_off_outlined,
+                              color: Palette.kBackgroundColor,
+                            )
+                          : Icon(Icons.visibility,
+                              color: Palette.kBackgroundColor)),
                   validator: Validator().validatePassword,
-                  width: double.infinity, isPasswordType: true,
+                  width: double.infinity,
+                  isPasswordType: true,
                 ),
-                myText(data: 'Mininum of  8 Characters',
+                myText(
+                  data: 'Mininum of  8 Characters',
                   color: Palette.kTextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,),
-                SizedBox(height: getProportionateScreenHeight(69),),
+                  fontWeight: FontWeight.w500,
+                ),
+                SizedBox(
+                  height: getProportionateScreenHeight(69),
+                ),
                 myButton(
                     height: 54,
                     width: double.infinity,

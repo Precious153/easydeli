@@ -16,6 +16,7 @@ import 'Screens/signUp.dart';
 
 // Bayo and Femi Worked on this
 Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

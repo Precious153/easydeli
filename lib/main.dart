@@ -4,6 +4,7 @@ import 'package:easydeli/Screens/onboardingScreen.dart';
 import 'package:easydeli/Screens/trackHistory.dart';
 import 'package:easydeli/Screens/trackItem.dart';
 import 'package:easydeli/Screens/trackItemMap.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/SplashScreen.dart';
@@ -14,7 +15,9 @@ import 'Screens/payment.dart';
 import 'Screens/signUp.dart';
 
 // Bayo and Femi Worked on this
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

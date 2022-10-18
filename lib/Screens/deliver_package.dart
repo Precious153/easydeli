@@ -228,6 +228,9 @@ class _DeliverPackageState extends State<DeliverPackage> {
                             myText(data: 'Next', color: Palette.kColorWhite)),
                   ],
                 ),
+                SizedBox(
+                  height: getProportionateScreenHeight(16),
+                ),
               ],
             ),
           ),

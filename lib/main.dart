@@ -1,6 +1,7 @@
 import 'package:easydeli/Screens/homePage.dart';
 import 'package:easydeli/Screens/login.dart';
 import 'package:easydeli/Screens/onboardingScreen.dart';
+import 'package:easydeli/Screens/phoneLogin.dart';
 import 'package:easydeli/Screens/trackHistory.dart';
 import 'package:easydeli/Screens/trackItem.dart';
 import 'package:easydeli/Screens/trackItemMap.dart';
@@ -12,6 +13,7 @@ import 'Screens/deliver_package.dart';
 import 'Screens/forgot_password.dart';
 import 'Screens/fund_account.dart';
 import 'Screens/payment.dart';
+import 'Screens/phoneLoginVerify.dart';
 import 'Screens/signUp.dart';
 
 // Bayo and Femi Worked on this
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
         'TrackHistory': (context) => const TrackHistory(),
         'TrackItem': (context) => const TrackItem(),
         'TrackItemMap': (context) => const TrackItemMap(),
+        'PhoneLogin': (context) => const PhoneLogin(),
+        'PhoneLoginVerify': (context) => const PhoneLoginVerify()
       },
     );
   }

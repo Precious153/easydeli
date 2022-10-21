@@ -17,9 +17,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  bool toggle = true;
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -47,30 +44,24 @@ class _LoginState extends State<Login> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(77),
-                ),
+                SizedBox(height: getProportionateScreenHeight(30)),
                 myText(
-                  data: 'Phone Number',
+                  data: 'Email Address',
                   textAlign: TextAlign.center,
                   color: Palette.kTextColor,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(8),
-                ),
+                SizedBox(height: getProportionateScreenHeight(8)),
                 KTextFormField(
-                    hint: "PhoneNumber",
-                    textEditingController: phoneController,
-                    keyboardType: TextInputType.phone,
+                    hint: "Email Address",
+                    textEditingController: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     obscureText: false,
-                    validator: Validator().validatePhoneNumber,
+                    validator: Validator().validateEmail,
                     width: double.infinity,
                     isPasswordType: false),
-                SizedBox(
-                  height: getProportionateScreenHeight(16),
-                ),
+                SizedBox(height: getProportionateScreenHeight(16)),
                 myText(
                   data: 'Password',
                   textAlign: TextAlign.center,
@@ -120,22 +111,22 @@ class _LoginState extends State<Login> {
                         Navigator.pushNamed(context, 'ForgotPassword');
                       },
                       child: myText(
-                        data: 'forgot password?',
+                        data: 'Forgot password?',
                         textAlign: TextAlign.center,
                         color: Palette.kTextColor,
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: getProportionateScreenHeight(135),
-                ),
+                SizedBox(height: getProportionateScreenHeight(50)),
                 myButton(
                     onTap: () {
                       FirebaseAuth.instance
-                          .signInWithPhoneNumber(phoneController.text.trim())
+                          .signInWithEmailAndPassword(
+                              email: emailController.text.trim(),
+                              password: passwordController.text)
                           .then((value) {
                         print('Login successfully');
                         Navigator.pushNamed(context, 'HomePage');
@@ -147,7 +138,33 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     borderRadius: 8,
                     color: Palette.kBackgroundColor,
-                    child: myText(data: 'Login', color: Palette.kColorWhite)),
+                    child: myText(
+                        data: 'Login',
+                        color: Palette.kColorWhite,
+                        fontSize: 15)),
+                SizedBox(height: getProportionateScreenHeight(20)),
+                myButton(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'PhoneLogin');
+                    },
+                    height: 54,
+                    width: double.infinity,
+                    borderRadius: 8,
+                    color: Palette.kBackgroundColor,
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Icon(Icons.phone,
+                              size: 30, color: Palette.kColorGold),
+                        ),
+                        myText(
+                            data: 'Login with phone number',
+                            fontSize: 15,
+                            color: Palette.kColorWhite),
+                      ],
+                    )),
+                SizedBox(height: getProportionateScreenHeight(20))
               ],
             ),
           ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-
-class Controller{
-
-}
+TextEditingController phoneController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
+TextEditingController firstNameController = TextEditingController();
+TextEditingController lastNameController = TextEditingController();
+TextEditingController emailController = TextEditingController();
+bool toggle = true;
+String selectedCountry = "Country";

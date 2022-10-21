@@ -1,4 +1,5 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:easydeli/constants/controllers.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/size_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,14 +16,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  TextEditingController phoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  bool toggle = true;
-  String selectedCountry = "Country";
-
   @override
   Widget build(BuildContext context) {
     SizeConfig.init(context);
@@ -234,7 +227,7 @@ class _SignUpState extends State<SignUp> {
                               password: passwordController.text)
                           .then((value) {
                         print("Account created successfully");
-                        Navigator.pushNamed(context, 'Login');
+                        Navigator.pushReplacementNamed(context, 'Login');
                       }).onError((error, stackTrace) {
                         print("Account creation failed ${error.toString()}");
                       });

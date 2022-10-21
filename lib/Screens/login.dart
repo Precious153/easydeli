@@ -4,6 +4,7 @@ import 'package:easydeli/constants/myTextFormField.dart';
 import 'package:easydeli/constants/size_config.dart';
 import 'package:easydeli/constants/validator.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../constants/controllers.dart';
 import '../constants/myButton.dart';
@@ -133,7 +134,14 @@ class _LoginState extends State<Login> {
                 ),
                 myButton(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, 'HomePage');
+                      FirebaseAuth.instance
+                          .signInWithPhoneNumber(phoneController.text.trim())
+                          .then((value) {
+                        print('Login successfully');
+                        Navigator.pushNamed(context, 'HomePage');
+                      }).onError((error, stackTrace) {
+                        print("Login failed ${error.toString()}");
+                      });
                     },
                     height: 54,
                     width: double.infinity,

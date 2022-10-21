@@ -1,55 +1,33 @@
 {
   "project_info": {
-<<<<<<< HEAD
-    "project_number": "166767670499",
-    "project_id": "easydeli-3a40f",
-    "storage_bucket": "easydeli-3a40f.appspot.com"
-=======
     "project_number": "136340172577",
     "project_id": "easydeli",
     "storage_bucket": "easydeli.appspot.com"
->>>>>>> b0f7b04 (Femi Commit)
   },
   "client": [
     {
       "client_info": {
-<<<<<<< HEAD
-        "mobilesdk_app_id": "1:166767670499:android:ad01e2a787134d04aa81d6",
-=======
-        "mobilesdk_app_id": "1:136340172577:android:172102e8c936f3aeb21860",
->>>>>>> b0f7b04 (Femi Commit)
+        "mobilesdk_app_id": "1:136340172577:android:54c745608b9e42fdb21860",
         "android_client_info": {
           "package_name": "com.example.easydeli"
         }
       },
       "oauth_client": [
         {
-<<<<<<< HEAD
-          "client_id": "166767670499-it2n90k5j91anpbbdnfnc05m5aldo342.apps.googleusercontent.com",
-=======
           "client_id": "136340172577-k5f2fpd3iofv9n6m3e763lnmko54b2on.apps.googleusercontent.com",
->>>>>>> b0f7b04 (Femi Commit)
           "client_type": 3
         }
       ],
       "api_key": [
         {
-<<<<<<< HEAD
-          "current_key": "AIzaSyB0vIdWo_LnZtNcwZaQhFbqfxzZOLEPCPM"
-=======
           "current_key": "AIzaSyAOUTTIsF4DTdbpEv7eTFeRaVK-E31WyxM"
->>>>>>> b0f7b04 (Femi Commit)
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-<<<<<<< HEAD
-              "client_id": "166767670499-it2n90k5j91anpbbdnfnc05m5aldo342.apps.googleusercontent.com",
-=======
               "client_id": "136340172577-k5f2fpd3iofv9n6m3e763lnmko54b2on.apps.googleusercontent.com",
->>>>>>> b0f7b04 (Femi Commit)
               "client_type": 3
             }
           ]

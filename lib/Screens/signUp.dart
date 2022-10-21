@@ -1,6 +1,7 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/myButton.dart';
@@ -226,6 +227,18 @@ class _SignUpState extends State<SignUp> {
                   height: getProportionateScreenHeight(69),
                 ),
                 myButton(
+                    onTap: () {
+                      FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                              email: emailController.text,
+                              password: passwordController.text)
+                          .then((value) {
+                        print("Account created successfully");
+                        Navigator.pushNamed(context, 'Login');
+                      }).onError((error, stackTrace) {
+                        print("Account creation failed ${error.toString()}");
+                      });
+                    },
                     height: 54,
                     width: double.infinity,
                     borderRadius: 8,

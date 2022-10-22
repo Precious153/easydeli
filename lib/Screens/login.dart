@@ -114,7 +114,7 @@ class _LoginState extends State<Login> {
                         data: 'Forgot password?',
                         textAlign: TextAlign.center,
                         color: Palette.kTextColor,
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

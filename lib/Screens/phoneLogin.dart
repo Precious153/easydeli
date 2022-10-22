@@ -1,3 +1,4 @@
+import 'package:easydeli/constants/controllers.dart';
 import 'package:easydeli/constants/myButton.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/myText.dart';
@@ -13,6 +14,13 @@ class PhoneLogin extends StatefulWidget {
 
 class _PhoneLogin extends State<PhoneLogin> {
   @override
+  void initState() {
+    countryCode.text = '+234';
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -21,44 +29,58 @@ class _PhoneLogin extends State<PhoneLogin> {
             padding: const EdgeInsets.only(left: 20.0, right: 20),
             child: Column(
               children: [
-                SizedBox(height: 100),
-                myText(
+                const SizedBox(height: 100),
+                const myText(
                     data: 'Phone Verification',
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
-                SizedBox(height: 10),
-                myText(
+                const SizedBox(height: 10),
+                const myText(
                   textAlign: TextAlign.center,
                   data:
                       'We need to register your phone before getting\nstarted !',
                   fontSize: 15,
                 ),
-                SizedBox(height: 50),
+                const SizedBox(height: 50),
                 Container(
                     width: double.infinity,
-                    height: getProportionateScreenHeight(50),
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                    height: getProportionateScreenHeight(54),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border:
+                            Border.all(width: 1, color: Palette.kTextColor)),
                     child: Row(
                       children: [
-                        SizedBox(width: 60, child: TextField()),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                            width: 50,
+                            child: TextField(
+                              controller: countryCode,
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none),
+                            )),
                         SizedBox(
                           width: 10,
                           child: VerticalDivider(
                             color: Palette.kTextColor,
                             thickness: 2,
-                            indent: 8,
-                            endIndent: 8,
+                            indent: 10,
+                            endIndent: 10,
                           ),
                         ),
-                        Expanded(
+                        const SizedBox(width: 10),
+                        const Expanded(
                           child: SizedBox(
-                            child: TextField(),
+                            child: TextField(
+                              keyboardType: TextInputType.phone,
+                              decoration:
+                                  InputDecoration(border: InputBorder.none),
+                            ),
                           ),
                         )
                       ],
                     )),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 myButton(
                   onTap: () {
                     Navigator.pushNamed(context, 'PhoneLoginVerify');

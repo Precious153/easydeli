@@ -1,7 +1,8 @@
+import 'package:easydeli/Screens/phoneLogin.dart';
 import 'package:easydeli/constants/myButton.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/myText.dart';
-import 'package:easydeli/constants/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -13,6 +14,9 @@ class PhoneLoginVerify extends StatefulWidget {
 }
 
 class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  String code = "";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,8 +52,10 @@ class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
                 const SizedBox(height: 50),
                 Pinput(
                   length: 6,
-                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
                   showCursor: true,
+                  onChanged: (value) {
+                    code = value;
+                  },
                 ),
                 const SizedBox(height: 20),
                 myButton(
@@ -69,14 +75,26 @@ class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        Navigator.popAndPushNamed(context, 'PhoneLogin');
+                      onTap: () async {
+                        try {
+                          // Create a PhoneAuthCredential with the code
+                          PhoneAuthCredential credential =
+                              PhoneAuthProvider.credential(
+                                  verificationId: PhoneLogin.verify,
+                                  smsCode: code);
+                          // Sign the user in (or link) with the credential
+                          await auth.signInWithCredential(credential);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, 'HomePage', (route) => false);
+                        } catch (e) {
+                          print('Wrong OTP');
+                        }
                       },
                       child: myText(
                         data: 'Edit phone number?',
                         textAlign: TextAlign.center,
                         color: Palette.kTextColor,
-                        fontSize: 14,
+                        fontSize: 15,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

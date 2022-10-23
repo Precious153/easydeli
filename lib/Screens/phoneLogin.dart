@@ -3,16 +3,20 @@ import 'package:easydeli/constants/myButton.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/myText.dart';
 import 'package:easydeli/constants/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class PhoneLogin extends StatefulWidget {
   const PhoneLogin({super.key});
+
+  static String verify = "";
 
   @override
   State<PhoneLogin> createState() => _PhoneLogin();
 }
 
 class _PhoneLogin extends State<PhoneLogin> {
+  var phone = "";
   @override
   void initState() {
     countryCode.text = '+234';
@@ -24,12 +28,23 @@ class _PhoneLogin extends State<PhoneLogin> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.popAndPushNamed(context, 'Login');
+            },
+            icon:
+                Icon(Icons.arrow_back_ios, color: Palette.kTextColor, size: 20),
+          ),
+        ),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20),
             child: Column(
               children: [
-                const SizedBox(height: 100),
+                const SizedBox(height: 70),
                 const myText(
                     data: 'Phone Verification',
                     fontSize: 25,
@@ -69,12 +84,16 @@ class _PhoneLogin extends State<PhoneLogin> {
                           ),
                         ),
                         const SizedBox(width: 10),
-                        const Expanded(
+                        Expanded(
                           child: SizedBox(
                             child: TextField(
+                              onChanged: (value) {
+                                phone = value;
+                              },
                               keyboardType: TextInputType.phone,
-                              decoration:
-                                  InputDecoration(border: InputBorder.none),
+                              decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: "Enter phone number"),
                             ),
                           ),
                         )
@@ -82,8 +101,22 @@ class _PhoneLogin extends State<PhoneLogin> {
                     )),
                 const SizedBox(height: 20),
                 myButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'PhoneLoginVerify');
+                  onTap: () async {
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      phoneNumber: countryCode.text + phone,
+                      verificationCompleted:
+                          (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException e) {
+                        if (e.code == 'invalid-phone-number') {
+                          print('The provided phone number is not valid.');
+                        }
+                      },
+                      codeSent: (String verificationId, int? resendToken) {
+                        PhoneLogin.verify = verificationId;
+                        Navigator.pushNamed(context, 'PhoneLoginVerify');
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
+                    );
                   },
                   height: 54,
                   width: double.infinity,

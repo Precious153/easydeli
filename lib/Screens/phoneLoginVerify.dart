@@ -15,10 +15,9 @@ class PhoneLoginVerify extends StatefulWidget {
 
 class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
   final FirebaseAuth auth = FirebaseAuth.instance;
-  String code = "";
-
   @override
   Widget build(BuildContext context) {
+    var code = "";
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -59,8 +58,18 @@ class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
                 ),
                 const SizedBox(height: 20),
                 myButton(
-                  onTap: () {
-                    Navigator.pushNamed(context, 'PhoneLoginVerify');
+                  onTap: () async {
+                    try {
+                      PhoneAuthCredential credential =
+                          PhoneAuthProvider.credential(
+                              verificationId: PhoneLogin.verify, smsCode: code);
+                      // Sign the user in (or link) with the credential
+                      await auth.signInWithCredential(credential);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, 'HomePage', (route) => false);
+                    } catch (e) {
+                      print('Wrong OTP');
+                    }
                   },
                   height: 54,
                   width: double.infinity,
@@ -75,20 +84,8 @@ class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     GestureDetector(
-                      onTap: () async {
-                        try {
-                          // Create a PhoneAuthCredential with the code
-                          PhoneAuthCredential credential =
-                              PhoneAuthProvider.credential(
-                                  verificationId: PhoneLogin.verify,
-                                  smsCode: code);
-                          // Sign the user in (or link) with the credential
-                          await auth.signInWithCredential(credential);
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, 'HomePage', (route) => false);
-                        } catch (e) {
-                          print('Wrong OTP');
-                        }
+                      onTap: () {
+                        Navigator.pop(context, 'PhoneLoginVerify');
                       },
                       child: myText(
                         data: 'Edit phone number?',

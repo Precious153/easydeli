@@ -106,11 +106,7 @@ class _PhoneLogin extends State<PhoneLogin> {
                       phoneNumber: countryCode.text + phone,
                       verificationCompleted:
                           (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {
-                        if (e.code == 'invalid-phone-number') {
-                          print('The provided phone number is not valid.');
-                        }
-                      },
+                      verificationFailed: (FirebaseAuthException e) {},
                       codeSent: (String verificationId, int? resendToken) {
                         PhoneLogin.verify = verificationId;
                         Navigator.pushNamed(context, 'PhoneLoginVerify');

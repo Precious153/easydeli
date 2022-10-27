@@ -101,28 +101,44 @@ class _PhoneLogin extends State<PhoneLogin> {
                     )),
                 const SizedBox(height: 20),
                 myButton(
-                  onTap: () async {
-                    await FirebaseAuth.instance.verifyPhoneNumber(
-                      phoneNumber: countryCode.text + phone,
-                      verificationCompleted:
-                          (PhoneAuthCredential credential) {},
-                      verificationFailed: (FirebaseAuthException e) {},
-                      codeSent: (String verificationId, int? resendToken) {
-                        PhoneLogin.verify = verificationId;
-                        Navigator.pushNamed(context, 'PhoneLoginVerify');
-                      },
-                      codeAutoRetrievalTimeout: (String verificationId) {},
-                    );
-                  },
-                  height: 54,
-                  width: double.infinity,
-                  borderRadius: 8,
-                  color: Palette.kBackgroundColor,
-                  child: myText(
-                      data: 'Send code',
-                      fontSize: 15,
-                      color: Palette.kColorWhite),
-                ),
+                    onTap: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                        phoneNumber: countryCode.text + phone,
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) {},
+                        verificationFailed: (FirebaseAuthException e) {
+                          if (e.code == 'invalid-phone-number') {
+                            print('The provided phone number is not valid.');
+                          }
+                        },
+                        codeSent: (String verificationId, int? resendToken) {
+                          PhoneLogin.verify = verificationId;
+                          Navigator.pushNamed(context, 'PhoneLoginVerify');
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                      );
+                      Future.delayed(const Duration(seconds: 10)).then((value) {
+                        isLoading = false;
+                        setState(() {});
+                      });
+                    },
+                    height: 54,
+                    width: double.infinity,
+                    borderRadius: 8,
+                    color: Palette.kBackgroundColor,
+                    child: isLoading == false
+                        ? Center(
+                            child: myText(
+                                data: 'Send code',
+                                fontSize: 15,
+                                color: Palette.kColorWhite),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                                color: Colors.white))),
               ],
             ),
           ),

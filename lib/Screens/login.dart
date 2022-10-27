@@ -122,8 +122,11 @@ class _LoginState extends State<Login> {
                 ),
                 SizedBox(height: getProportionateScreenHeight(50)),
                 myButton(
-                    onTap: () {
-                      FirebaseAuth.instance
+                    onTap: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      await FirebaseAuth.instance
                           .signInWithEmailAndPassword(
                               email: emailController.text.trim(),
                               password: passwordController.text)
@@ -133,15 +136,25 @@ class _LoginState extends State<Login> {
                       }).onError((error, stackTrace) {
                         print("Login failed ${error.toString()}");
                       });
+                      Future.delayed(const Duration(seconds: 10)).then((value) {
+                        isLoading = false;
+                        setState(() {});
+                      });
                     },
                     height: 54,
                     width: double.infinity,
                     borderRadius: 8,
                     color: Palette.kBackgroundColor,
-                    child: myText(
-                        data: 'Login',
-                        color: Palette.kColorWhite,
-                        fontSize: 15)),
+                    child: isLoading == false
+                        ? Center(
+                            child: myText(
+                                data: 'Login',
+                                color: Palette.kColorWhite,
+                                fontSize: 15),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                                color: Colors.white))),
                 SizedBox(height: getProportionateScreenHeight(20)),
                 myButton(
                     onTap: () {

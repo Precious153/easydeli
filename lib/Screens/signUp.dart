@@ -221,6 +221,9 @@ class _SignUpState extends State<SignUp> {
                 ),
                 myButton(
                     onTap: () {
+                      setState(() {
+                        isLoading == true;
+                      });
                       FirebaseAuth.instance
                           .createUserWithEmailAndPassword(
                               email: emailController.text,
@@ -231,12 +234,22 @@ class _SignUpState extends State<SignUp> {
                       }).onError((error, stackTrace) {
                         print("Account creation failed ${error.toString()}");
                       });
+                      Future.delayed(const Duration(seconds: 10)).then((value) {
+                        isLoading = false;
+                        setState(() {});
+                      });
                     },
                     height: 54,
                     width: double.infinity,
                     borderRadius: 8,
                     color: Palette.kBackgroundColor,
-                    child: myText(data: 'SignUp', color: Palette.kColorWhite)),
+                    child: isLoading == false
+                        ? Center(
+                            child: myText(
+                                data: 'SignUp', color: Palette.kColorWhite))
+                        : const Center(
+                            child: CircularProgressIndicator(
+                                color: Colors.white))),
               ],
             ),
           ),

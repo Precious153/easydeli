@@ -1,4 +1,5 @@
 import 'package:easydeli/Screens/phoneLogin.dart';
+import 'package:easydeli/constants/controllers.dart';
 import 'package:easydeli/constants/myButton.dart';
 import 'package:easydeli/constants/myColor.dart';
 import 'package:easydeli/constants/myText.dart';
@@ -58,28 +59,42 @@ class _PhoneLoginVerifyState extends State<PhoneLoginVerify> {
                 ),
                 const SizedBox(height: 20),
                 myButton(
-                  onTap: () async {
-                    try {
-                      PhoneAuthCredential credential =
-                          PhoneAuthProvider.credential(
-                              verificationId: PhoneLogin.verify, smsCode: code);
-                      // Sign the user in (or link) with the credential
-                      await auth.signInWithCredential(credential);
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, 'HomePage', (route) => false);
-                    } catch (e) {
-                      print('Wrong OTP');
-                    }
-                  },
-                  height: 54,
-                  width: double.infinity,
-                  borderRadius: 8,
-                  color: Palette.kBackgroundColor,
-                  child: myText(
-                      data: 'Verify code',
-                      fontSize: 15,
-                      color: Palette.kColorWhite),
-                ),
+                    onTap: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        PhoneAuthCredential credential =
+                            PhoneAuthProvider.credential(
+                                verificationId: PhoneLogin.verify,
+                                smsCode: code);
+                        // Sign the user in (or link) with the credential
+                        await auth.signInWithCredential(credential);
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, 'HomePage', (route) => false);
+                      } catch (e) {
+                        print('Wrong OTP');
+                      }
+                      Future.delayed(const Duration(seconds: 10)).then((value) {
+                        isLoading = false;
+                        setState(() {});
+                      });
+                    },
+                    height: 54,
+                    width: double.infinity,
+                    borderRadius: 8,
+                    color: Palette.kBackgroundColor,
+                    child: isLoading == false
+                        ? Center(
+                            child: myText(
+                                data: 'Verify code',
+                                fontSize: 15,
+                                color: Palette.kColorWhite),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(
+                                color: Colors.white))),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

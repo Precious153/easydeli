@@ -1,5 +1,10 @@
+import 'dart:async';
+
+import 'package:easydeli/Screens/login.dart';
 import 'package:easydeli/constants/myText.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/myColor.dart';
 import '../constants/size_config.dart';
@@ -14,6 +19,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  // int? initScreen;
+
   @override
   void initState() {
     // ignore: todo
@@ -22,6 +29,19 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, 'OnboardingScreen');
     });
+
+    // Timer(Duration(seconds: 5), () async {
+    //   SharedPreferences preferences = await SharedPreferences.getInstance();
+    //   // var auth = Provider.of<Authentication>(context, listen: false);
+
+    //   initScreen = await preferences.getInt('initScreen');
+    //   Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) => initScreen == 0 && initScreen == null
+    //               ? OnboardingScreen()
+    //               : const Login()));
+    // });
   }
 
   Widget build(BuildContext context) {

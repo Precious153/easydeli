@@ -19,29 +19,33 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // int? initScreen;
+  final splashDelay = 2;
 
   @override
   void initState() {
-    // ignore: todo
-    // TODO: implement initState
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, 'OnboardingScreen');
     });
+    _loadWidget();
+  }
 
-    // Timer(Duration(seconds: 5), () async {
-    //   SharedPreferences preferences = await SharedPreferences.getInstance();
-    //   // var auth = Provider.of<Authentication>(context, listen: false);
+  _loadWidget() async {
+    var _duration = Duration(seconds: splashDelay);
+    return Timer(_duration, checkFirstSeen);
+  }
 
-    //   initScreen = await preferences.getInt('initScreen');
-    //   Navigator.pushReplacement(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: (context) => initScreen == 0 && initScreen == null
-    //               ? OnboardingScreen()
-    //               : const Login()));
-    // });
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _splashScreen = (prefs.getBool('splash_screen') ?? false);
+
+    Navigator.pop(context);
+    if (_splashScreen) {
+      Navigator.pushNamed(context, 'Login');
+    } else {
+      await prefs.setBool('splash_screen', true);
+      Navigator.pushNamed(context, 'SplashScreen');
+    }
   }
 
   Widget build(BuildContext context) {
